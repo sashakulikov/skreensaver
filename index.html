@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clock Skreensaver</title>
+    <meta name="description" content="A simple digital clock with a custom typeface Terrainkur">
+    <meta property="og:title" content="Clock Skreensaver">
+    <meta property="og:description" content="A simple digital clock with a custom typeface Terrainkur by Sasha Kulikov">
+    <link rel="icon" type="image/png" href="skrn-fi.png"> <!-- Add your image URL -->
+    <link rel="icon" type="image/png" href="skrn-fi.png"> <!-- Add your favicon path -->
+    <style>
+        @font-face {
+            font-family: 'SK Terrainkur';
+            src: url('SKTerrainkur.woff') format('woff');
+        }
+
+        body {
+            position: relative; /* Set position to relative to accommodate absolute positioning */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            background-color: #0500ff; /* Adjusted background color */
+        }
+        .time-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Adjusted height for perfect vertical centering */
+            margin-top: -85px; /* Adjusted margin for optical compensation */
+        }
+        .time {
+            display: flex;
+            font-family: 'SK Terrainkur', sans-serif; /* Custom font */
+            font-size: 30vw; /* Adjusted font size */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white; /* Text color */
+            margin-left: -80px; /* Adjust the margin as needed to manage centering manually */
+        }
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 0.4em; /* Adjust width as needed */
+            letter-spacing: -0.2em; /* Adjust the letter spacing to tightly place the glyphs */
+        }
+
+        @media only screen and (max-width: 600px) {
+            .time {
+                margin-left: -30px; /* Adjust the margin for smaller screens */
+            }
+        }
+
+        .wrapper {
+            position: absolute; /* Set position to absolute for precise positioning */
+            top: -12px; /* Adjusted top position */
+            left: 6px; /* Adjusted left position */
+            opacity: 50%;
+            color: white;
+        }
+
+        #foot {
+            position: fixed;
+            bottom: 5px;
+            left: 6px;
+            opacity: 50%;
+            color: white;
+        }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="SKTerrainkur.woff">
+</head>
+<body>
+    <div class="time-container">
+        <div class="time" id="time">
+            <div class="cell" id="hour1">0</div>
+            <div class="cell" id="hour2">0</div>
+            <div class="cell">:</div>
+            <div class="cell" id="minute1">0</div>
+            <div class="cell" id="minute2">0</div>
+            <div class="cell">:</div>
+            <div class="cell" id="second1">0</div>
+            <div class="cell" id="second2">0</div>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('hour1').innerText = hours[0];
+            document.getElementById('hour2').innerText = hours[1];
+            document.getElementById('minute1').innerText = minutes[0];
+            document.getElementById('minute2').innerText = minutes[1];
+            document.getElementById('second1').innerText = seconds[0];
+            document.getElementById('second2').innerText = seconds[1];
+        }
+        updateTime(); // Update immediately
+        setInterval(updateTime, 1000); // Update every second
+    </script>
+    <div class='wrapper'>
+        <p>Skreensaver</p>
+    </div>
+
+    <div id='foot'>
+        Code: <a href="mailto:hi@sashakulikov.com" style="color: white;">Sasha Kulikov</a>
+        <br>Typeface: Terrainkur
+    </div>
+</body>
+</html>
